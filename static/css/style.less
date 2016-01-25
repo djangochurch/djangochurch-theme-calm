@@ -46,7 +46,6 @@ body {
 @width: 52em;
 
 .main {
-    display: table;
     margin: 0 auto;
     width: 100%;
 
@@ -62,6 +61,10 @@ body {
             float: right;
             width: @width * 0.382 - 2em;
         }
+        &.bottom { display: none; }
+        @media all and (max-width: 850px) {
+            &.bottom { display: block; }
+        }
     }
 
     .content {
@@ -72,7 +75,65 @@ body {
             padding: 1em 0;
         }
     }
+
+    @media all and (max-width: 850px) {
+        .side {
+            width: 100%;
+            overflow: hidden;
+            text-align: center;
+            display: block;
+            padding-bottom: 0.5em;
+            .box { display: inline-block; float: none; width: 100%; }
+            .news, .events {
+                float: none; width: calc(680px ~"-" 5.25em); margin: auto; display: none;
+            }
+            &.bottom { padding-bottom: 3em; .news, .events {display: block; } }
+        }
+        .content {
+            display: block;
+            margin-left: 0;
+            .wrap { width: calc(680px ~"-" 5.25em); margin: 1em auto 2.625em auto; }
+        }
+        .subnav {
+            width: 100%;
+            li { display: inline-block; }
+            .subnav li:nth-last-child(-n+4) { display: none; }
+        }
+    }
+    @media all and (max-width: 660px) {
+        .content .wrap { width: calc(100% ~"-" 2.625em); }
+        .subnav {
+            border-bottom: 0.6em solid @brand-color;
+            background: lighten(@brand-color, 37.5%);
+            li:nth-last-child(-n+4) {
+                display: none;
+            }
+        }
+        .content .wrap { padding-top: 0;}
+    }
+    @media all and (max-width: 480px) {
+        .side { .news, .events { width: calc(100% ~"-" 0.5em); } }
+        .subnav {
+            li {
+                display: block;
+                a { text-align: center; }
+            }
+        }
+    }
 }
+
+.hero-image {
+    width: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    img {
+        width: 100%;
+        height: auto;
+        vertical-align: top;
+    }
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // header
@@ -161,7 +222,6 @@ body {
         overflow: hidden;
         position: relative;
         text-align: left;
-
         h2 {
             padding-top: 0.2em;
             padding-left: 0.625em;
@@ -235,10 +295,13 @@ body {
     h1, h2, h3 {
         font-weight: normal;
     }
+    h1 { margin-bottom: 0; font-weight: 600;}
     h6 {
         text-transform: uppercase;
         color: lighten(@text-color, 30%);
+        margin-top: 0.75em;
     }
+    img, video, iframe { width: 100%; }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -259,16 +322,27 @@ body {
 
 .post-list {
     padding: 0;
-
     li {
         overflow: hidden;
-        padding: 0 0 2em 0;
+        padding: 2em 0 4em 0;
         list-style: none;
-        border-bottom: .0625em solid lighten(@text-color, 70%);
+        border-bottom: .5em solid lighten(@text-color, 70%);
     }
     .image {
         padding-top: 2em;
     }
+    .teaser {
+        h1, h2 { line-height: 1.25; }
+        h1:first-of-type { line-height: 1; }
+    }
+    .post {
+        h1:first-of-type { line-height: 1; }
+        li {
+            padding: 0.75em 0 0.75em 0;
+            border-bottom: .0625em solid lighten(@text-color, 70%);
+        }
+    }
+    @media all and (max-width: 660px) { .post:first-of-type { padding-top: 0; }}
 }
 
 .post {
@@ -284,6 +358,7 @@ body {
             img {
                 display: block;
                 margin: -3em -2.625em 1em -2.625em;
+                @media all and (max-width: 850px) { margin: 0 0 0 0; }
             }
         }
     }
@@ -307,7 +382,8 @@ body {
     display: table;
     border-top: 0.0625em solid lighten(@text-color, 70%);
     overflow: hidden;
-
+    @media all and (max-width: 850px) { margin: 0; }
+    @media all and (max-width: 660px) { width: 100%; }
     h1 {
         padding-left: 0.625em;
     }
@@ -329,6 +405,7 @@ body {
                 text-transform: uppercase;
             }
         }
+        @media all and (max-width: 660px) { display: block; width: 100%; }
     }
     .event-list {
         margin: 0;
@@ -417,6 +494,9 @@ body {
 .foot {
     width: 52em;
     margin: 0 auto;
+    overflow: hidden;
+    padding: 0 2.625em;
+    box-sizing: border-box;
     p { float: left; }
     ul {
         padding: 0;
@@ -433,5 +513,12 @@ body {
         &:hover {
             color: @alt-color;
         }
+    }
+    @media all and (max-width: 850px) {
+        font-size: 0.9em;
+        text-align: center;
+        width: 100%;
+        p,ul { float: none; li { display: block; margin: 0; } }
+        p { display: inline-block; }
     }
 }
