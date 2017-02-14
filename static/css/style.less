@@ -33,8 +33,12 @@ body {
 }
 
 .page {
-    background: @alt-color;
+    background: @brand-color;
     color: @text-color;
+
+    @media all and (max-width: 850px) {
+        background: @alt-color;
+    }
 }
 
 .head {
@@ -48,6 +52,7 @@ body {
 .main {
     margin: 0 auto;
     width: 100%;
+    max-width: 852px;
 
     .side, .content {
         display: table-cell;
@@ -63,7 +68,11 @@ body {
         }
         &.bottom { display: none; }
         @media all and (max-width: 850px) {
-            &.bottom { display: block; }
+            background: @alt-color;
+            &.bottom {
+                background: @brand-color;
+                display: block;
+            }
         }
     }
 
@@ -72,7 +81,7 @@ body {
         .wrap {
             width: @width * 0.618 - 2em;
             margin: 1em 2.625em;
-            padding: 1em 0;
+            padding: 0;
         }
     }
 
@@ -205,7 +214,6 @@ body {
 // main content
 
 .side {
-    background: @brand-color;
     padding-bottom: 3em;
 
     h1 {
@@ -377,7 +385,7 @@ body {
 // events
 
 .events-table {
-    margin: -2em -2.625em;
+    margin: 0 -2.625em;
     width: @width - (@width * 0.382 - 2em);
     display: table;
     border-top: 0.0625em solid lighten(@text-color, 70%);
