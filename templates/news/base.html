@@ -19,7 +19,6 @@
         {% for i in news_categories %}
             <li><a href="{{ i.get_absolute_url }}"{% if category == i or object.category == i %} class="active"{% endif %}>{{ i }}</a></li>
         {% endfor %}
-        {% include "includes/links.html" %}
     </ul>
 </nav>
 {% endblock subnav %}

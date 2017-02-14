@@ -7,6 +7,5 @@
         {% for page, page_active in subnav_pages %}
             <li><a href="{{ page.get_absolute_url }}"{% if page_active %} class="active"{% endif %}>{{ page.title }}</a></li>
         {% endfor %}
-        {% include "includes/links.html" %}
     </ul>
 </nav>
