@@ -7,8 +7,10 @@
 
 {% block content %}
 
-<h1>Events</h1>
-<a class="ical more" href="webcal://{{ request.get_host }}{% url 'blanc_basic_events:feed' %}">Subscribe to iCal feed</a>
+<div class="event-title">
+    <h1>Events</h1>
+    <a class="ical more" href="webcal://{{ request.get_host }}{% url 'blanc_basic_events:feed' %}">Subscribe to iCal feed</a>
+</div>
 <hr />
 
 <ul class="event-list">
